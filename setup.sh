@@ -8,7 +8,7 @@ yes Y | sudo apt update
 yes Y | sudo apt install mysql-server mysql-client
 
     if ! sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'secret123';"; then
-        echo "\033[93mSeems you already have mysql password created on this machine, please provide below to continue\033[0m"
+        echo "\033[93mSeems you already have mysql password created on this machine, please provide below to continue\033[0m \n"
         read input_variable
         sudo mysql -u 'root' "-p$input_variable" -e "CREATE USER web_service identified by '$input_variable'"
         sudo mysql -u 'root' "-p$input_variable" -e "grant all on `web_service\_%`.* to `web_service`@`%`;"
@@ -41,6 +41,15 @@ yes Y | sudo systemctl reload apache2.service
 
 yes Y | sudo apt-get install phpmyadmin php-gettext
 
-sudo curl https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip -o ngrok.zip && unzip ./ngrok.zip && rm ngrok.zip
-sudo ./ngrok authtoken 1bERy5v8oy4MUkCgoz5M4nsS7Ue_7ThbyJChnrNi8verBAhiq
-sudo ./ngrok http 80
+echo "\033[93mDo you want to open your database to remote connections? (Y/N) \033[0m \n"
+read input_response
+
+if [[ "$input_response" == "Y" ]]; then
+    echo -e "Continuing..."
+    sudo curl https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip -o ngrok.zip && unzip ./ngrok.zip && rm ngrok.zip
+    sudo ./ngrok authtoken 1bERy5v8oy4MUkCgoz5M4nsS7Ue_7ThbyJChnrNi8verBAhiq
+    sudo ./ngrok http 80
+  else
+    echo -e "Exiting..."
+    exit 1
+  fi
