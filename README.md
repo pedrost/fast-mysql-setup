@@ -1,6 +1,9 @@
-Login Mysql e PHPmyadmin \n
-Usuario: root \n
-Senha: secret123 \n
+Login Mysql e PHPmyadmin
+
+Usuario: root
+
+Senha: secret123
+
 
 Basta rodar 
 
@@ -16,5 +19,7 @@ E quando pedir para configurar a dbconfig-common, selecione *no* e pressione *en
 
 
 Se voce estiver rodando isso em uma maquina EC2 da amazon
+
 Vai precisar abrir a porta HTTP nos security-groups
+
 E tambem nao precisa usar o NGROK, pode usar o endereco IP da maquina que sera acessivel de qualquer lugar
