@@ -1,6 +1,6 @@
-Login Mysql e PHPmyadmin
-Usuario: root
-Senha: secret123
+Login Mysql e PHPmyadmin \n
+Usuario: root \n
+Senha: secret123 \n
 
 Basta rodar 
 
