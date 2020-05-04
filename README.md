@@ -1,8 +1,8 @@
 Login Mysql e PHPmyadmin
 
-Usuario: **root
+Usuario: **root**
 
-Senha: **secret123
+Senha: **secret123**
 
 
 Basta rodar 
