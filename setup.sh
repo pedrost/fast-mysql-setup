@@ -11,7 +11,7 @@ yes Y | sudo apt install mysql-server mysql-client
         echo "\033[93mSeems you already have mysql password created on this machine, please provide below to continue\033[0m \n"
         read input_variable
         sudo mysql -u 'root' "-p$input_variable" -e "CREATE USER web_service identified by '$input_variable'"
-        sudo mysql -u 'root' "-p$input_variable" -e "grant all on `web_service\_%`.* to `web_service`@`%`;"
+        sudo mysql -u 'root' "-p$input_variable" -e "REVOKE ALL PRIVILEGES ON *.* FROM 'web_service'@'%'; GRANT ALL PRIVILEGES ON *.* TO 'web_service'@'%' REQUIRE NONE WITH GRANT OPTION MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;"
     else
         sudo mysql -u 'root' '-psecret123' -e "CREATE USER web_service identified by 'secret123'"
         sudo mysql -u 'root' '-psecret123' -e "grant all on `web_service\_%`.* to `web_service`@`%`;"
